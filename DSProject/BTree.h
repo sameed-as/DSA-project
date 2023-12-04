@@ -5,6 +5,7 @@ class BTreeNode{
 	T data;
 
 	int keys;
+	int k;
 };
 template <typename T>
 class BTree {
