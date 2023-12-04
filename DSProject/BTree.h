@@ -3,7 +3,7 @@ template<typename T>
 class BTreeNode{
 	public:
 	T data;
-	BTreeNode<T>** childPointers;
+
 	int keys;
 };
 template <typename T>
