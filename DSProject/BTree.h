@@ -18,6 +18,8 @@ public:
         leaf = leaf1;
         tmin = ceil((t + 1) / 2.0);
         keys = new int[t];
+        for (int i= 0; i < t; i++)
+            keys[i] = INT16_MAX;
         C = new BNode * [t+1];
 
         n = 0;
@@ -26,8 +28,8 @@ public:
         BNode* z = new BNode(y->t, y->leaf);
         z->n = tmin - 1;
 
-        for (int j = 0; j < tmin&&tmin<t; j++) {
-
+        for (int j = 0; j < z->n; j++) {
+            if(j+tmin < t)
             z->keys[j] = y->keys[j + tmin];
            // z->n++;
         }

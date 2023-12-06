@@ -9,7 +9,7 @@
 
 using namespace std;
 int main(){
-	    BTree t(2);
+	    BTree t(3);
     t.insert(8);
     t.insert(9);
     t.insert(10);
