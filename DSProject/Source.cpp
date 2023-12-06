@@ -9,19 +9,21 @@
 
 using namespace std;
 int main(){
-	cout << "Hello world" << endl;
-	BTree<int> b(3);
-	b.insert(1);
-	b.insert(2);
-	b.insert(3);
-	b.insert(4);
-	b.insert(5);
-	b.insert(6);
-	b.insert(7);
-	b.insert(8);
-	b.insert(9);
-	b.insert(10);
-	b.insert(11);
+	    BTree t(2);
+    t.insert(8);
+    t.insert(9);
+    t.insert(10);
+	cout<<t.root->C[0]->keys[0]<<" ";
+	cout << t.root->C[1]->keys[0] << " ";
+    t.insert(11);
+    t.insert(15);
+	t.insert(20);
+	t.insert(17);
+
+
+    cout << "The B-tree is: ";
+    t.traverse();
+
 
 
 	CircularLinkedList<int> cll;

@@ -1,122 +1,138 @@
-#pragma once
-template<typename T>
-class BTreeNode{ //A node which can hold mupltiple data values
-	public:
-	T* data;	//the data will be used to store the paths
-	int order;	//Shows the number of children one node can hold
-	BTreeNode** p_child; //Pointers for multiple childern of node  
-	int* keys;	//keys for the hash values of the data 
-	int no_of_keys;
-	bool leaf;
+// Inserting a key on a B-tree in C++
+#include<cmath>
+#include <iostream>
+using namespace std;
 
+class BNode {
+public:
+    int* keys;
+    int t;
+    int tmin;
+    BNode** C;
+    int n;
+    bool leaf;
 
-	BTreeNode(int m  = 5  , bool is_leaf = true) {
-		order = m;
-		data = new T[order-1];
-		p_child = new BTreeNode * [order];
-		for (int i = 0; i < order; i++) {
-			p_child[i] = nullptr;
-		}
-		keys = new int[order];
-		leaf = is_leaf;
-		no_of_keys = 0;
-	}
-	void splitChild(int index, BTreeNode<T>* root) {
-		BTreeNode<T>* newChild = new BTreeNode(root->order, root->leaf);
-		int min = ceil(order / 2);
-		newChild->no_of_keys = min - 1;
+    
+    BNode(int t1, bool leaf1) {
+        t = t1;
+        leaf = leaf1;
+        tmin = ceil((t + 1) / 2.0);
+        keys = new int[t];
+        C = new BNode * [t+1];
 
-		for (int j = 0; j < min - 1; j++)
-			newChild->keys[j] = root->keys[j + min];
+        n = 0;
+    }
+    void splitChild(int i, BNode* y) {
+        BNode* z = new BNode(y->t, y->leaf);
+        z->n = tmin - 1;
 
-		if (root->leaf == false) {
-			for (int j = 0; j < min; j++)
-				newChild->p_child[j] = root->p_child[j + min];
-		}
+        for (int j = 0; j < tmin&&tmin<t; j++) {
 
-		root->no_of_keys = min - 1;
-		for (int j = no_of_keys; j >= index + 1; j--)
-			p_child[j + 1] = p_child[j];
+            z->keys[j] = y->keys[j + tmin];
+           // z->n++;
+        }
 
-		p_child[index + 1] = newChild;
+        if (y->leaf == false) {
+            for (int j = 0; j < t; j++)
+                z->C[j] = y->C[j + t];
+        }
 
-		for (int j = no_of_keys - 1; j >= index; j--)
-			keys[j + 1] = keys[j];
+        y->n = tmin - 1;
+        for (int j = n; j >= i + 1; j--)
+            C[j + 1] = C[j];
 
-		keys[index] = root->keys[min - 1];
-		no_of_keys = no_of_keys + 1;
-	}
-	void insertNonFull(int key) {
-		int idx = no_of_keys - 1;
+        C[i + 1] = z;
 
-		if (leaf == true) {
-			while (idx >= 0 && keys[idx] > key) {
-				keys[idx + 1] = keys[idx];
-				idx--;
-			}
+        for (int j = n - 1; j >= i; j--)
+            keys[j + 1] = keys[j];
 
-			keys[idx + 1] = key;
-			no_of_keys = no_of_keys + 1;
-		}
-		else {
-			while (idx >= 0 && keys[idx] > key)
-				idx--;
+        keys[i] = y->keys[tmin - 1];
+        n = n + 1;
+    }
+    void insertNonFull(int k) {
+        int i = n - 1;
 
-			if (p_child[idx + 1]->no_of_keys == order - 1) {
-				splitChild(idx + 1, p_child[idx + 1]);
+        if (leaf == true) {
+            while (i >= 0 && keys[i] > k) {
+                keys[i + 1] = keys[i];
+                i--;
+            }
 
-				if (keys[idx + 1] < key)
-					idx++;
-			}
-			p_child[idx + 1]->insertNonFull(key);
-		}
-	}
+            keys[i + 1] = k;
+            n = n + 1;
+        }
+        else {
+            while (i >= 0 && keys[i] > k)
+                i--;
 
-	~BTreeNode() {
-		for (int i = 0; i < order; i++) {
-			delete[] p_child[i];
-		}
-		delete[] p_child;
-		delete[] keys;
-		delete[] data;
-	}
-	
+            if (C[i + 1]->n == t) {
+                splitChild(i + 1, C[i + 1]);
+
+                if (keys[i + 1] < k)
+                    i++;
+            }
+            C[i + 1]->insertNonFull(k);
+        }
+    }
+    void traverse();
+
 };
-template <typename T>
+
 class BTree {
-	public:
-		int order;	//Shows the number of children one node can hold
-		BTreeNode<T>* root;
-		BTree(int given_order) {
-			root = nullptr;
-			order = given_order;
-		}
-		void insert(int key) {
-			if (root == nullptr) {
-				root = new BTreeNode<T>(order, true);
-				root->keys[0] = key;
-				root->no_of_keys++;
-			}
-			else if (root->no_of_keys == order - 1) {
-				BTreeNode<T>* s = new BTreeNode<T>(order, false);
+public:
+    BNode* root;
+    int t;
+    int tmin;
 
-				s->p_child[0] = root;
+    BTree(int _t) {
+        root = NULL;
+        t = _t;
+        tmin = ceil((t + 1) / 2.0);
+    }
 
-				s->splitChild(0, root);
+    void traverse() {
+        if (root != NULL)
+            root->traverse();
+    }
 
-				int i = 0;
-				if (s->keys[0] < key)
-					i++;
-				s->p_child[i]->insertNonFull(key);
+    void insert(int k) {
+        if (root == NULL) {
+            root = new BNode(t, true);
+            root->keys[0] = k;
+            root->n = 1;
+        }
+        else {
+            if (root->n == t) {
+                BNode* s = new BNode(t, false);
 
-				root = s;
-			}
-			else {
-				root->insertNonFull(key);
-			}
-			for (int i = 0; i < root->no_of_keys;i++) {
-				std::cout << root->keys[i] << "   ";
-			}
-		}
+                s->C[0] = root;
+
+                s->splitChild(0, root);
+
+                int i = 0;
+                if (s->keys[0] < k)
+                    i++;
+                s->C[i]->insertNonFull(k);
+
+                root = s;
+            }
+            else
+                root->insertNonFull(k);
+        }
+    }
 };
+
+// Traverse the nodes
+void BNode::traverse() {
+    int i;
+    for (i = 0; i < n; i++) {
+        if (leaf == false)
+            C[i]->traverse();
+        cout << " " << keys[i];
+    }
+
+    if (leaf == false)
+        C[i]->traverse();
+}
+
 
