@@ -18,8 +18,10 @@ public:
         leaf = leaf1;
         tmin = ceil((t + 1) / 2.0);
         keys = new int[t];
-        for (int i= 0; i < t; i++)
+        for (int i = 0; i < t; i++)
+        {
             keys[i] = INT16_MAX;
+        }
         C = new BNode * [t+1];
 
         n = 0;
@@ -74,6 +76,26 @@ public:
                     i++;
             }
             C[i + 1]->insertNonFull(k);
+            if (n > t) {
+                cout << keys[3]<<endl;
+                BNode* s = new BNode(t, false);
+
+                s->C[0] = this;
+
+                s->splitChild(0, this);
+
+                int d = 0;
+                if (s->keys[0] < keys[n])
+                    d++;
+                s->C[d]->insertNonFull(keys[n]);
+                for (int i = 0; i < s->n; i++) {
+                    this->keys[i] = s->keys[i];
+                    this->C[i] = s->C[i];
+                }
+                this->C[n] = s->C[n];
+                this->leaf = s->leaf;
+                this->n = s->n;
+            }
         }
     }
     void traverse();
@@ -104,7 +126,10 @@ public:
             root->n = 1;
         }
         else {
-            if (root->n == t) {
+            if (root->leaf == false) {
+                root->insertNonFull(k);
+            }
+            else if (root->n == t) {
                 BNode* s = new BNode(t, false);
 
                 s->C[0] = root;
@@ -126,11 +151,12 @@ public:
 
 // Traverse the nodes
 void BNode::traverse() {
-    int i;
-    for (i = 0; i < n; i++) {
+    int i = 0;
+    while ( i < n) {
         if (leaf == false)
             C[i]->traverse();
         cout << " " << keys[i];
+        ++i;
     }
 
     if (leaf == false)

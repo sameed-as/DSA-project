@@ -9,16 +9,21 @@
 
 using namespace std;
 int main(){
-	    BTree t(3);
-    t.insert(8);
-    t.insert(9);
-    t.insert(10);
-	cout<<t.root->C[0]->keys[0]<<" ";
-	cout << t.root->C[1]->keys[0] << " ";
-    t.insert(11);
-    t.insert(15);
-	t.insert(20);
+	BTree t(3);
+	t.insert(8);
+	t.insert(9);
+	t.insert(10);
+	t.insert(11);
+	t.insert(15);
+	t.insert(16);
+	cout << t.root->keys[1];
 	t.insert(17);
+	cout << t.root->C[2]->keys[2];
+	t.insert(18);
+	cout << t.root->C[3]->keys[1];
+	t.insert(20);
+	t.insert(23);
+	cout << t.root->keys[3];
 
 
     cout << "The B-tree is: ";
