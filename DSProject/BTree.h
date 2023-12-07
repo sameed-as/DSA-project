@@ -1,4 +1,5 @@
 // Inserting a key on a B-tree in C++
+// using the input of max nodes from user
 #include<cmath>
 #include <iostream>
 using namespace std;
