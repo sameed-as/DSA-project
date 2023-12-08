@@ -44,6 +44,8 @@ public:
             if (j + tmin < t)
                 z->keys[j] = y->keys[j + tmin];
             // z->n++;
+            else
+                z->n--;
         }
 
         if (y->isleaf() == false) {
@@ -158,11 +160,14 @@ public:
 void BNode::traverse() {
     
     int i = 0;
-    if (C[i] != nullptr)
+    if (C[i] != nullptr) {
         C[i]->traverse();
-    for (i = 1; i <= n; i++) { 
+    }
+
+    for (i = 1; i <= n; i++) {
         cout << " " << keys[i - 1];
-        if(C[i] != nullptr)
+
+        if (C[i] != nullptr)
             C[i]->traverse();
     }
 }
