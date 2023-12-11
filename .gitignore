@@ -433,3 +433,4 @@ FodyWeavers.xsd
 *.tlog
 *.exe.recipe
 *.exe
+DSProject.tlog/
