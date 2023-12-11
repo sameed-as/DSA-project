@@ -167,7 +167,7 @@ void BNode::traverse() {
 
     for (i = 1; i <= n; i++) {
         cout << " " << keys[i - 1];
-
+        
         if (C[i] != nullptr)
             C[i]->traverse();
     }
