@@ -430,7 +430,9 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-*.tlog
+*.1.tlog
 *.exe.recipe
 *.exe
-DSProject.tlog/
+*.pdb
+*.ilk
+*.obj
