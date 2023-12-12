@@ -1,5 +1,4 @@
 ﻿  Source.cpp
-C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\BTree.h(35,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\BTree.h(113,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  LINK : C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\x64\Debug\DSProject.exe not found or not built by the last incremental link; performing full link
+C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\BTree.h(30,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\BTree.h(108,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   DSProject.vcxproj -> C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\x64\Debug\DSProject.exe

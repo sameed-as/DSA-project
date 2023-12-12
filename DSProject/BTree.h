@@ -3,12 +3,7 @@
 #include<cmath>
 #include <queue>
 #include <iostream>
-#pragma comment(lib, "openssl/STATIC/x64/Debug/lib/libcrypto.lib")
-#pragma comment(lib, "openssl/STATIC/x64/Debug/lib/libssl.lib")
-#include "openssl/STATIC/x64/Debug/include/openssl/sha.h"
-#include "openssl/STATIC/x64/Debug/include/openssl/macros.h"
-#pragma comment (lib, "crypt32")
-#pragma comment(lib, "ws2_32.lib")
+
 using namespace std;
 
 class BNode {
