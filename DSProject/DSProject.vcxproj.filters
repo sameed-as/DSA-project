@@ -35,5 +35,8 @@
     <ClInclude Include="machine.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="generating_SHA.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

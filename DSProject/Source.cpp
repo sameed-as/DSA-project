@@ -6,13 +6,7 @@
 #include "doublyLL.h"
 //#include "bigInt"
 #include <cmath>
-//includes to include sha 
-#pragma comment(lib, "openssl/STATIC/x64/Debug/lib/libcrypto.lib")
-#pragma comment(lib, "openssl/STATIC/x64/Debug/lib/libssl.lib")
-#include "openssl/STATIC/x64/Debug/include/openssl/sha.h"
-#include "openssl/STATIC/x64/Debug/include/openssl/macros.h"
-#pragma comment (lib, "crypt32")
-#pragma comment(lib, "ws2_32.lib")
+#include "generating_SHA.h"
 
 using namespace std;
 int main(){
@@ -89,7 +83,10 @@ int main(){
 		current = current->getNext();
 	} while (current != cll.getHead());
 
-	
+	sha_from_file("files/test.PNG");
+	sha_from_file("files/out.txt");
+	sha_from_file("files/2.JPG");
+
 
 	return 0;
 }

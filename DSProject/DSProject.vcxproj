@@ -135,6 +135,7 @@
     <ClInclude Include="circularLinkedlist.h" />
     <ClInclude Include="doublyLL.h" />
     <ClInclude Include="finger Table.h" />
+    <ClInclude Include="generating_SHA.h" />
     <ClInclude Include="machine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
