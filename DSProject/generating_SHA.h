@@ -40,4 +40,5 @@ int sha_from_file(string s)
 	f.close();
 	f1.close();
 	return 0;
+	
 }
