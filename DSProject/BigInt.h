@@ -1,17 +1,18 @@
 // C++ program to implement
 // the above approach
+#pragma once
 #include <iostream>
 //#include <vector>
 #include <bits.h>
 using namespace std;
 
-using namespace std;
 
 class BigInt {
 	string digits;
 public:
 
 	//Constructors:
+	
 	BigInt(unsigned long long n = 0);
 	BigInt(string&);
 	BigInt(const char*);

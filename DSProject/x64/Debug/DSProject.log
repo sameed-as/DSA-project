@@ -1,4 +1,13 @@
 ﻿  Source.cpp
-C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\BTree.h(33,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\BTree.h(139,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  DSProject.vcxproj -> C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\x64\Debug\DSProject.exe
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BigInt.h(70,8): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BigInt.h(85,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BigInt.h(101,22): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BigInt.h(139,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BigInt.h(158,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BigInt.h(232,8): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BigInt.h(232,29): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BigInt.h(352,8): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BigInt.h(362,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BTree.h(34,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BTree.h(158,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  DSProject.vcxproj -> C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\x64\Debug\DSProject.exe
