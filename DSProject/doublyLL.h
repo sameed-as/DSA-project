@@ -152,11 +152,11 @@ public:
 					current->getNext()->setPrev(current->getPrev());
 				}
 				delete current;
+				size--;
 				return;
 			}
 			current = current->getNext();
 			i++;
 		}
-		size--;
 	}
 };
