@@ -6,7 +6,7 @@ using namespace std;
 
 class BigInt {
 public:
-	unsigned char number[20];
+	unsigned char number[20] = {0};
 
     BigInt(string integer)
     {
@@ -14,15 +14,16 @@ public:
             number[i] = integer[i];
     }
 
-    int mod(int a)
+    BigInt mod(int a)
     {
         // Initialize result
-        int res = 0;
+        BigInt res = 0;
 
         // One by one process all digits of 'num'
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; number[i] != '\0'; i++)
             res = (res * 10 + number[i] - '0') % a;
 
         return res;
     }
+
 };
