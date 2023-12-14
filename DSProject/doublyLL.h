@@ -11,6 +11,7 @@ public:
 	{
 		prev = NULL;
 		next = NULL;
+		size = 0;
 	}
 	DoublyNode(T data, DoublyNode<T>* prev, DoublyNode <T>* next)
 	{
@@ -18,7 +19,7 @@ public:
 		this->next = next;
 		this->prev = prev;
 	}
-	int getData()
+	T getData()
 	{
 		return data;
 	}
@@ -30,7 +31,7 @@ public:
 	{
 		return prev;
 	}
-	void setData(int x)
+	void setData(T x)
 	{
 		data = x;
 	}
@@ -46,8 +47,9 @@ public:
 template <class T>
 class DoublyLinkedList
 {
-	DoublyNode <T>* head;
 public:
+	int size;
+	DoublyNode <T>* head;
 	DoublyNode<T>* getHead()
 	{
 		return head;
@@ -67,7 +69,7 @@ public:
 	}
 	void insert(T x)
 	{
-		DoublyNode* node = new DoublyNode(x, NULL, NULL);
+		DoublyNode<T>* node = new DoublyNode<T>(x, NULL, NULL);
 		if (isEmpty())
 		{
 			head = node;
@@ -82,6 +84,7 @@ public:
 			temp->setNext(node);
 			node->setPrev(temp);
 		}
+		size++;
 	}
 	bool search(T x)
 	{
@@ -114,12 +117,37 @@ public:
 	void print()
 	{
 		DoublyNode<T>* temp = head;
+		int i = 0;
 		do
 		{
-			cout << temp->getData() << " ";
+			cout <<i<<" " << temp->getData() << endl;
 			temp = temp->getNext();
+			i++;
 		} while (temp != NULL);
 		cout << endl;
+	}
+	void clear() {
+		DoublyNode<T>* current = head;
+		DoublyNode<T>* nextNode;
+
+		while (current != nullptr) {
+			nextNode = current->next;
+			delete current;
+			current = nextNode;
+		}
+		size = 0;
+		head = nullptr;
+	}
+	DoublyLinkedList& operator=(const DoublyLinkedList& other) {
+		if (this != &other) {
+			clear();
+			DoublyNode<T>* current = other.head;
+			while (current != nullptr) {
+				insert(current->data);
+				current = current->next;
+			}
+		}
+		return *this;
 	}
 	void insertAtIndex(T x, int place)
 	{
@@ -136,23 +164,46 @@ public:
 		temp->getPrev()->setNext(node);
 		temp->setPrev(node);
 	}
-	void deleteData(T x)
+	/*void deleteData(int choice)
 	{
-		if (search(x))
+		int i = 0;
+		DoublyNode<T>* temp = head;
+		while (i < size)
 		{
-			DoublyNode<T>* temp = head;
-			while (temp != NULL)
+			if (i == choice)
 			{
-				if (temp->getData() == x)
-				{
-					temp->getPrev()->setNext(temp->getNext());
-					temp->getNext()->setPrev(temp->getPrev());
-					delete temp;
-					temp = NULL;
-					break;
-				}
-				temp = temp->getNext();
+				temp->getPrev()->setNext(temp->getNext());
+				if(temp->getNext())
+				temp->getNext()->setPrev(temp->getPrev());
+				delete temp;
+				temp = NULL;
+				break;
 			}
+			temp = temp->getNext();
+			i++;
 		}
+		size--;
+	}*/
+	void deleteData(int choice) {
+		DoublyNode<T>* current = head;
+		int i = 0;
+		while (i < size) {
+			if (i == choice) {
+				if (current->getPrev()) {
+					current->getPrev()->setNext(current->getNext());
+				}
+				else {
+					head = current->getNext();
+				}
+				if (current->getNext()) {
+					current->getNext()->setPrev(current->getPrev());
+				}
+				delete current;
+				return;
+			}
+			current = current->getNext();
+			i++;
+		}
+		size--;
 	}
 };
