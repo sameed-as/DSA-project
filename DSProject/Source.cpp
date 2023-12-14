@@ -62,5 +62,6 @@ int main(){
 	sha_from_file("files/out.txt");
 	sha_from_file("files/2.JPG");
 
-	
+	BigInt first("12345678");
+	cout << first.mod(100);
 }
