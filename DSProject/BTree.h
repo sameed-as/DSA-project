@@ -1,8 +1,10 @@
 // Inserting a key on a B-tree in C++
+// using the input of max nodes from user
 #include<cmath>
 #include "doublyLL.h"
 #include <queue>
 #include <iostream>
+
 using namespace std;
 
 class BNode {
@@ -433,7 +435,7 @@ void BNode::traverse() {
 
     for (i = 1; i <= n; i++) {
         cout << " " << keys[i - 1];
-
+        
         if (C[i] != nullptr)
             C[i]->traverse();
     }

@@ -6,6 +6,9 @@
 #include "doublyLL.h"
 //#include "bigInt"
 #include <cmath>
+#include "generating_SHA.h"
+#include <graphviz/gvc.h>
+#include<cstdio>
 
 using namespace std;
 int main(){
@@ -207,7 +210,9 @@ int main(){
 		current = current->getNext();
 	} while (current != cll.getHead());
 
-	
+	sha_from_file("files/test.PNG");
+	sha_from_file("files/out.txt");
+	sha_from_file("files/2.JPG");
 
-	return 0;
+	
 }

@@ -164,26 +164,7 @@ public:
 		temp->getPrev()->setNext(node);
 		temp->setPrev(node);
 	}
-	/*void deleteData(int choice)
-	{
-		int i = 0;
-		DoublyNode<T>* temp = head;
-		while (i < size)
-		{
-			if (i == choice)
-			{
-				temp->getPrev()->setNext(temp->getNext());
-				if(temp->getNext())
-				temp->getNext()->setPrev(temp->getPrev());
-				delete temp;
-				temp = NULL;
-				break;
-			}
-			temp = temp->getNext();
-			i++;
-		}
-		size--;
-	}*/
+
 	void deleteData(int choice) {
 		DoublyNode<T>* current = head;
 		int i = 0;

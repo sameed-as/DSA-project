@@ -104,10 +104,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\awais\source\repos\sameed-as\DSA-project\DSProject\openssl\STATIC\x64\Debug\include;C:\Program Files\Graphviz\include;C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\openssl\STATIC\x64\Debug\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>C:\Program Files\Graphviz\lib\gvc.lib;C:\Program Files\Graphviz\lib\cgraph.lib;C:\Users\awais\source\repos\sameed-as\DSA-project\DSProject\openssl\STATIC\x64\Debug\lib\libcrypto.lib;C:\Users\awais\source\repos\sameed-as\DSA-project\DSProject\openssl\STATIC\x64\Debug\lib\libssl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -134,6 +137,7 @@
     <ClInclude Include="circularLinkedlist.h" />
     <ClInclude Include="doublyLL.h" />
     <ClInclude Include="finger Table.h" />
+    <ClInclude Include="generating_SHA.h" />
     <ClInclude Include="machine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
