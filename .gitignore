@@ -436,3 +436,4 @@ FodyWeavers.xsd
 *.pdb
 *.ilk
 *.obj
+*.vcxproj
