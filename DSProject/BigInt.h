@@ -14,10 +14,10 @@ public:
             number[i] = integer[i];
     }
 
-    BigInt mod(int a)
+    int mod(int a)
     {
         // Initialize result
-        BigInt res = 0;
+        int res = 0;
 
         // One by one process all digits of 'num'
         for (int i = 0; number[i] != '\0'; i++)
