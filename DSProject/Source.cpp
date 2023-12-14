@@ -33,7 +33,7 @@ int main(){
 	t.insert(16, "World16");
 	t.insert(13, "World13");
 	t.deletion(2);
-	t.deletion(8);
+	//t.deletion(8);
 
 
 	//cout << t.root->keys[3];
