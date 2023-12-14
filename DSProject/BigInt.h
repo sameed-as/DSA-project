@@ -7,6 +7,13 @@ using namespace std;
 class BigInt {
 public:
 	unsigned char number[20];
+
+    BigInt(string integer)
+    {
+        for (int i = 0; integer[i] != '\0'; i++)
+            number[i] = integer[i];
+    }
+
     int mod(int a)
     {
         // Initialize result
