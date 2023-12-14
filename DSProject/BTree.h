@@ -1,5 +1,6 @@
 // Inserting a key on a B-tree in C++
 // using the input of max nodes from user
+#pragma once
 #include<cmath>
 #include "doublyLL.h"
 #include <queue>
@@ -129,6 +130,12 @@ public:
     BNode* root;
     int t;
     int tmin;
+
+    BTree()
+    {
+        root = nullptr;
+        t = tmin = 0;
+    }
 
     BTree(int _t) {
         root = NULL;

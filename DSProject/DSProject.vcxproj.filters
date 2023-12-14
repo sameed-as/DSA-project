@@ -26,9 +26,6 @@
     <ClInclude Include="BTree.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="finger Table.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="doublyLL.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -37,6 +34,9 @@
     </ClInclude>
     <ClInclude Include="generating_SHA.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="routing_table.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

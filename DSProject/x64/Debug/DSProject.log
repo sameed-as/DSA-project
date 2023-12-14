@@ -1,4 +1,10 @@
 ﻿  Source.cpp
+<<<<<<< HEAD
 C:\Users\awais\source\repos\sameed-as\DSA-project\DSProject\BTree.h(32,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 C:\Users\awais\source\repos\sameed-as\DSA-project\DSProject\BTree.h(136,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   DSProject.vcxproj -> C:\Users\awais\source\repos\sameed-as\DSA-project\DSProject\x64\Debug\DSProject.exe
+=======
+C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\BTree.h(31,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\BTree.h(115,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  DSProject.vcxproj -> C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\x64\Debug\DSProject.exe
+>>>>>>> 3e27cb9f46a73288041e31727b791230938062cf
