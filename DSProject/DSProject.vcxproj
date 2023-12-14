@@ -104,12 +104,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Program Files\Graphviz\include;C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\openssl\STATIC\x64\Debug\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\openssl\STATIC\x64\Debug\include;C:\Program Files\Graphviz\include;C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\openssl\STATIC\x64\Debug\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>C:\Program Files\Graphviz\lib\gvc.lib;C:\Program Files\Graphviz\lib\cgraph.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:\Program Files\Graphviz\lib\gvc.lib;C:\Program Files\Graphviz\lib\cgraph.lib;C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\openssl\STATIC\x64\Debug\lib\libcrypto.lib;C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\openssl\STATIC\x64\Debug\lib\libssl.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
