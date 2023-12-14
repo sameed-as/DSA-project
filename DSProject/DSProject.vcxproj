@@ -133,6 +133,7 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BigInt.h" />
     <ClInclude Include="BTree.h" />
     <ClInclude Include="circularLinkedlist.h" />
     <ClInclude Include="doublyLL.h" />

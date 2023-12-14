@@ -38,5 +38,8 @@
     <ClInclude Include="routing_table.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="BigInt.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
