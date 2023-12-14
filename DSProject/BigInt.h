@@ -1,5 +1,4 @@
-// C++ program to implement
-// the above approach
+#pragma once
 #include <iostream>
 //#include <vector>
 #include <bits.h>
@@ -8,8 +7,8 @@ using namespace std;
 using namespace std;
 
 class BigInt {
-	string digits;
 public:
+	string digits = "";
 
 	//Constructors:
 	BigInt(unsigned long long n = 0);
@@ -170,12 +169,12 @@ BigInt BigInt::operator--(int temp) {
 }
 
 BigInt& operator+=(BigInt& a, const BigInt& b) {
-	int t = 0, s, i;
+	int t = 0, s = 0, i = 0;
 	int n = Length(a), m = Length(b);
 	if (m > n)
 		a.digits.append(m - n, 0);
 	n = Length(a);
-	for (i = 0; i < n;i++) {
+	for (i = 0; i < n; i++) {
 		if (i < m)
 			s = (a.digits[i] + b.digits[i]) + t;
 		else

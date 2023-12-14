@@ -2,6 +2,7 @@
 #include <iostream>
 #include "DoublyLL.h"
 #include "BigInt.h"
+#include <string>
 
 using namespace std;
 
@@ -19,13 +20,20 @@ public:
 		vals = nullptr;
 		total_enteries = 0;
 	}
-	routing_table(int num, BigInt id = 5)
+	routing_table(int num, BigInt id)
 	{
 		idx = 0;
 		total_enteries = num;
 		succ = new Node<T>* [num];
 		vals = new BigInt[num];
 		for (int i = 0; i < num; i++)
-			vals[i] = id + pow(2, i - 1);
+		{
+			unsigned long long nr = pow(2, i);
+			BigInt temp(nr);
+			vals[i] = id + temp;
+			cout << "val " << i + 1 << ": " << vals[i] << endl;
+		}
+		cout << endl;
 	}
+
 };

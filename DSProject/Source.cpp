@@ -64,12 +64,17 @@ int main(){
 	sha_from_file("files/out.txt");
 	sha_from_file("files/2.JPG");
 
-	BigInt first("12345678");
-	BigInt second("10");
-	cout << first % second;
+	BigInt first(1);
+	BigInt second(1);
+	cout << first + second;
 
 	cout << "\nTEST FOR MACHINES:\n";
 	DoublyLinkedList<routing_table<machine>> dll;
-	
-	machine m1("google.com", &dll);
+	CircularLinkedList<machine> DHT;
+
+	machine m1("9", &dll, &DHT);
+	machine m2("4", &dll, &DHT);
+	machine m3("18", &dll, &DHT);
+	machine m4("1", &dll, &DHT);
+	machine m5("20", &dll, &DHT);
 }
