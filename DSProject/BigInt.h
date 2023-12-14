@@ -8,8 +8,8 @@ using namespace std;
 
 
 class BigInt {
-	string digits;
 public:
+	string digits;
 
 	//Constructors:
 	
