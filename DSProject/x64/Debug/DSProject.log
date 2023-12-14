@@ -1,1 +1,47 @@
-﻿  DSProject.vcxproj -> C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\x64\Debug\DSProject.exe
+﻿  Source.cpp
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BTree.h(33,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BTree.h(139,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BTree.h(212,32): error C2039: 'size': is not a member of 'DoublyLinkedList<std::string>'
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BTree.h(14,5): message : see declaration of 'DoublyLinkedList<std::string>'
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BTree.h(220,31): error C2664: 'void DoublyLinkedList<std::string>::deleteData(T)': cannot convert argument 1 from 'int' to 'T'
+          with
+          [
+              T=std::string
+          ]
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BTree.h(220,43): message : 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string': no overloaded function could convert all the argument types
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\xstring(2539,5): message : could be 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string(const _Elem *const )'
+          with
+          [
+              _Elem=char
+          ]
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BTree.h(220,43): message : 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string(const _Elem *const )': cannot convert argument 1 from 'int' to 'const _Elem *const '
+          with
+          [
+              _Elem=char
+          ]
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BTree.h(220,43): message : Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or parenthesized function-style cast
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\xstring(3072,5): message : or       'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string(std::initializer_list<_Elem>,const _Alloc &)'
+          with
+          [
+              _Elem=char,
+              _Alloc=std::allocator<char>
+          ]
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BTree.h(220,43): message : 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string(std::initializer_list<_Elem>,const _Alloc &)': cannot convert argument 1 from 'int' to 'std::initializer_list<_Elem>'
+          with
+          [
+              _Elem=char,
+              _Alloc=std::allocator<char>
+          ]
+          and
+          [
+              _Elem=char
+          ]
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BTree.h(220,43): message : Conversion requires a second user-defined-conversion operator or constructor
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\xstring(2569,5): message : or       'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string(_Iter,_Iter,const _Alloc &)'
+          with
+          [
+              _Alloc=std::allocator<char>
+          ]
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BTree.h(220,43): message : while trying to match the argument list '(int)'
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\doublyLL.h(139,7): message : see declaration of 'DoublyLinkedList<std::string>::deleteData'
+C:\Users\awais\Source\Repos\sameed-as\DSA-project\DSProject\BTree.h(220,31): message : while trying to match the argument list '(int)'

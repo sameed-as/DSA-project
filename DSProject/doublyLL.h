@@ -2,95 +2,77 @@
 #include<iostream>
 using namespace std;
 template <class T>
-class DoublyNode
-{
+class DoublyNode {
 public:
 	T data;
 	DoublyNode<T>* prev, * next;
-	DoublyNode()
-	{
+	DoublyNode() {
 		prev = NULL;
 		next = NULL;
+		size = 0;
 	}
-	DoublyNode(T data, DoublyNode<T>* prev, DoublyNode <T>* next)
-	{
+	DoublyNode(T data, DoublyNode<T>* prev, DoublyNode <T>* next) {
 		this->data = data;
 		this->next = next;
 		this->prev = prev;
 	}
-	int getData()
-	{
+	T getData() {
 		return data;
 	}
-	DoublyNode<T>* getNext()
-	{
+	DoublyNode<T>* getNext() {
 		return next;
 	}
-	DoublyNode<T>* getPrev()
-	{
+	DoublyNode<T>* getPrev() {
 		return prev;
 	}
-	void setData(int x)
-	{
+	void setData(T x) {
 		data = x;
 	}
-	void setNext(DoublyNode<T>* n)
-	{
+	void setNext(DoublyNode<T>* n) {
 		next = n;
 	}
-	void setPrev(DoublyNode<T>* p)
-	{
+	void setPrev(DoublyNode<T>* p) {
 		prev = p;
 	}
 };
 template <class T>
-class DoublyLinkedList
-{
-	DoublyNode <T>* head;
+class DoublyLinkedList {
 public:
-	DoublyNode<T>* getHead()
-	{
+	int size;
+	DoublyNode <T>* head;
+	DoublyNode<T>* getHead() {
 		return head;
 	}
-	DoublyLinkedList()
-	{
+	DoublyLinkedList() {
 		head = NULL;
 	}
-	bool isEmpty()
-	{
+	bool isEmpty() {
 		return (head == NULL);
 	}
-	void insertToHead(T x)
-	{
+	void insertToHead(T x) {
 		DoublyNode<T>* node = new DoublyNode(x, NULL, head);
 		head = node;
 	}
-	void insert(T x)
-	{
-		DoublyNode* node = new DoublyNode(x, NULL, NULL);
-		if (isEmpty())
-		{
+	void insert(T x) {
+		DoublyNode<T>* node = new DoublyNode<T>(x, NULL, NULL);
+		if (isEmpty()) {
 			head = node;
 		}
-		else
-		{
+		else {
 			DoublyNode<T>* temp = head;
-			while (temp->getNext() != NULL)
-			{
+			while (temp->getNext() != NULL) {
 				temp = temp->getNext();
 			}
 			temp->setNext(node);
 			node->setPrev(temp);
 		}
+		size++;
 	}
-	bool search(T x)
-	{
+	bool search(T x) {
 		bool check = false;
 		DoublyNode<T>* temp = head;
-		while (temp != NULL)
-		{
-			if (temp->getData() == x)
-			{
+		while (temp != NULL) {
+			if (temp->getData() == x) {
 				check = true;
 				break;
 			}
@@ -98,35 +80,53 @@ public:
 		}
 		return check;
 	}
-	void update(T x, T replace)
-	{
+	void update(T x, T replace) {
 		DoublyNode<T>* temp = head;
-		while (temp != NULL)
-		{
-			if (temp->getData() == x)
-			{
+		while (temp != NULL) {
+			if (temp->getData() == x) {
 				temp->setData(replace);
 				break;
 			}
 			temp = temp->getNext();
 		}
 	}
-	void print()
-	{
+	void print() {
 		DoublyNode<T>* temp = head;
-		do
-		{
-			cout << temp->getData() << " ";
+		int i = 0;
+		do {
+			cout << i << " " << temp->getData() << endl;
 			temp = temp->getNext();
+			i++;
 		} while (temp != NULL);
 		cout << endl;
 	}
-	void insertAtIndex(T x, int place)
-	{
+	void clear() {
+		DoublyNode<T>* current = head;
+		DoublyNode<T>* nextNode;
+
+		while (current != nullptr) {
+			nextNode = current->next;
+			delete current;
+			current = nextNode;
+		}
+		size = 0;
+		head = nullptr;
+	}
+	DoublyLinkedList& operator=(const DoublyLinkedList& other) {
+		if (this != &other) {
+			clear();
+			DoublyNode<T>* current = other.head;
+			while (current != nullptr) {
+				insert(current->data);
+				current = current->next;
+			}
+		}
+		return *this;
+	}
+	void insertAtIndex(T x, int place) {
 		DoublyNode<T>* temp = head;
 		int reach = 0;
-		while (temp && reach != place)
-		{
+		while (temp && reach != place) {
 			temp = temp->getNext();
 			reach++;
 		}
@@ -136,23 +136,27 @@ public:
 		temp->getPrev()->setNext(node);
 		temp->setPrev(node);
 	}
-	void deleteData(T x)
-	{
-		if (search(x))
-		{
-			DoublyNode<T>* temp = head;
-			while (temp != NULL)
-			{
-				if (temp->getData() == x)
-				{
-					temp->getPrev()->setNext(temp->getNext());
-					temp->getNext()->setPrev(temp->getPrev());
-					delete temp;
-					temp = NULL;
-					break;
+
+	void deleteData(int choice) {
+		DoublyNode<T>* current = head;
+		int i = 0;
+		while (i < size) {
+			if (i == choice) {
+				if (current->getPrev()) {
+					current->getPrev()->setNext(current->getNext());
 				}
-				temp = temp->getNext();
+				else {
+					head = current->getNext();
+				}
+				if (current->getNext()) {
+					current->getNext()->setPrev(current->getPrev());
+				}
+				delete current;
+				return;
 			}
+			current = current->getNext();
+			i++;
 		}
+		size--;
 	}
 };
