@@ -3,6 +3,7 @@
 #include "BTree.h"
 #include "circularLinkedlist.h"
 #include "routing_table.h"
+#include "machine.h"
 #include "doublyLL.h"
 #include "bigInt.h"
 #include <cmath>
@@ -32,6 +33,7 @@ int main(){
 	t.insert(12, "World12");
 	t.insert(16, "World16");
 	t.insert(13, "World13");
+	t.deletion(2);
 	t.deletion(2);
 	//t.deletion(8);
 
@@ -63,5 +65,11 @@ int main(){
 	sha_from_file("files/2.JPG");
 
 	BigInt first("12345678");
-	cout << first.mod(100);
+	BigInt second("10");
+	cout << first % second;
+
+	cout << "\nTEST FOR MACHINES:\n";
+	DoublyLinkedList<routing_table<machine>> dll;
+	
+	machine m1("google.com", &dll);
 }

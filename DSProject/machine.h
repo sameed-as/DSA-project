@@ -8,12 +8,13 @@ using namespace std;
 
 class machine
 {
+public:
 	unsigned char name[255];
 	unsigned char ID[20];
+	BigInt real_ID;
 	BTree nodeBTree;
 	DoublyLinkedList<routing_table<machine>>* routablelist;
 	routing_table<machine>* rt;
-public:
 	machine(string nm, DoublyLinkedList<routing_table<machine>>* dll)
 	{
 		char t;
@@ -24,11 +25,17 @@ public:
 		cin >> t;
 		if (t == 'y')
 		{
-			cin >> id;
-			setId_SHA(id);
+			cin >> real_ID.digits;
+			setId_SHA(real_ID.digits);
 		}
 		else
+		{
 			SHA1(name, strlen((char*)name), ID);
+			int i;
+			for (i = 0; i < 20; i++)
+				int a = int(ID[i]);
+			real_ID.digits[i] = '\0';
+		}
 
 		nodeBTree = NULL;
 		rt = new routing_table<machine>{ 5 };
