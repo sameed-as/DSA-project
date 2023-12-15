@@ -14,7 +14,7 @@ public:
 	unsigned char name[255];
 	unsigned char ID[20];
 	BigInt real_ID;
-	BTree nodeBTree;
+	BTree* nodeBTree;
 	DoublyLinkedList<routing_table<machine>>* routablelist;
 	routing_table<machine>* rt;
 
@@ -64,7 +64,7 @@ public:
 		power(two, mod);
 		real_ID = real_ID % two; //seperating the last bits given by identifier space of user
 
-		nodeBTree = NULL;
+		nodeBTree = new BTree(idspace);
 		cout << "\nId of Machine: \n" << real_ID << endl;
 		rt = new routing_table<machine>{ idspace , real_ID};
 		DHT->insertmachine(*this);

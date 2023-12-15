@@ -34,14 +34,14 @@ BigInt sha_from_file(string s, unsigned long long idspace)
 	SHA1(input, i, output); // i is used as length of input string bcz strlen terminates calculation when \0 is encountered
 
 	for (int j = 0; j < 20; j++)
-		printf("%02x", output[j]);
+		printf("%d", output[j]);
 	cout << endl;
 
 	string id = "";
 	int k;
 	for (k = 0; k < 20; k++)
 	{
-		int n = int(output[i]);
+		int n = int(output[k]);
 		id += to_string(n);
 	}
 	BigInt ID_BigInt(id);
