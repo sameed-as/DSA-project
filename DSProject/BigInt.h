@@ -5,283 +5,248 @@ using namespace std;
 
 class BigInt {
 public:
-	string digits = "";
+	string dig = "";
 
-	//Constructors:
-	BigInt(string& s) {
-		digits = "";
-		int n = s.size();
-		for (int i = n - 1; i >= 0;i--) {
-			if (!isdigit(s[i]))
-				throw("ERROR");
-			digits.push_back(s[i] - '0');
+	BigInt(string& str) {
+		dig = "";
+		int size = str.size();
+		for (int i = size - 1; i >= 0;i--) {
+			dig.push_back(str[i] - '0');
 		}
 	}
-	BigInt(unsigned long long nr = 0) {
+	BigInt(unsigned long long num = 0) {
 		do {
-			digits.push_back(nr % 10);
-			nr /= 10;
-		} while (nr);
+			dig.push_back(num % 10);
+			num /= 10;
+		} while (num);
 	}
-	BigInt(const char* s) {
-		digits = "";
-		for (int i = strlen(s) - 1; i >= 0;i--) {
-			if (!isdigit(s[i]))
-				throw("ERROR");
-			digits.push_back(s[i] - '0');
+	BigInt(const char* str) {
+		dig = "";
+		int size = strlen(str);
+		for (int i = size - 1; i >= 0;i--) {
+			dig.push_back(str[i] - '0');
 		}
 	}
-	BigInt(BigInt& a) {
-		digits = a.digits;
+	BigInt(BigInt& copy) {
+		dig = copy.dig;
 	}
 
-	//Helper Functions:
-	bool Null(const BigInt& a) {
-		if (a.digits.size() == 1 && a.digits[0] == 0)
+	bool Null(const BigInt& first) {
+		if (first.dig.size() == 1 && first.dig[0] == 0)
 			return true;
 		return false;
 	}
-	int Length(const BigInt& a)const {
-		return a.digits.size();
+	int Length(const BigInt& first)const {
+		return first.dig.size();
 	}
 	int operator[](const int index)const {
-		if (digits.size() <= index || index < 0)
-			throw("ERROR");
-		return digits[index];
+		return dig[index];
 	}
-
-	/* * * * Operator Overloading * * * */
-
-//Direct assignment
-	bool operator==(const BigInt& b) {
-		return this->digits == b.digits;
+	bool operator==(const BigInt& other) {
+		return this->dig == other.dig;
 	}
-	bool operator!=(const BigInt& b) {
-		return !(*this == b);
+	bool operator!=(const BigInt& other) {
+		return !(*this == other);
 	}
-	bool operator<(const BigInt& b)const {
-		int n = Length(*this), m = Length(b);
-		if (n != m)
-			return n < m;
-		while (n--)
-			if (this->digits[n] != b.digits[n])
-				return this->digits[n] < b.digits[n];
+	bool operator<(const BigInt& other)const {
+		int s1 = Length(*this), s2 = Length(other);
+		if (s1 != s2)
+			return s1 < s2;
+		while (s1--)
+			if (this->dig[s1] != other.dig[s1])
+				return this->dig[s1] < other.dig[s1];
 		return false;
 	}
-	bool operator>(const BigInt& b)const {
-		return b < *this;
+	bool operator>(const BigInt& other)const {
+		return other < *this;
 	}
-	bool operator>=(const BigInt& b) {
-		return !(*this < b);
+	bool operator>=(const BigInt& other) {
+		return !(*this < other);
 	}
-	bool operator<=(BigInt& b) {
-		return !(*this > b);
+	bool operator<=(BigInt& other) {
+		return !(*this > other);
 	}
 
-	BigInt& operator=(const BigInt& a) {
-		digits = a.digits;
+	BigInt& operator=(const BigInt& first) {
+		dig = first.dig;
 		return *this;
 	}
 
 	BigInt& operator++() {
-		int i, n = digits.size();
-		for (i = 0; i < n && digits[i] == 9;i++)
-			digits[i] = 0;
-		if (i == n)
-			digits.push_back(1);
+		int i, s1 = dig.size();
+		for (i = 0; i < s1 && dig[i] == 9;i++)
+			dig[i] = 0;
+		if (i == s1)
+			dig.push_back(1);
 		else
-			digits[i]++;
+			dig[i]++;
 		return *this;
 	}
 	BigInt operator++(int temp) {
-		BigInt aux;
-		aux = *this;
+		BigInt temporary;
+		temporary = *this;
 		++(*this);
-		return aux;
+		return temporary;
 	}
 
 	BigInt& operator--() {
-		if (digits[0] == 0 && digits.size() == 1)
-			throw("UNDERFLOW");
-		int i, n = digits.size();
-		for (i = 0; digits[i] == 0 && i < n;i++)
-			digits[i] = 9;
-		digits[i]--;
-		if (n > 1 && digits[n - 1] == 0)
-			digits.pop_back();
+		int i, s1 = dig.size();
+		for (i = 0; dig[i] == 0 && i < s1;i++)
+			dig[i] = 9;
+		dig[i]--;
+		if (s1 > 1 && dig[s1 - 1] == 0)
+			dig.pop_back();
 		return *this;
 	}
 	BigInt operator--(int temp) {
-		BigInt aux;
-		aux = *this;
+		BigInt temporary;
+		temporary = *this;
 		--(*this);
-		return aux;
+		return temporary;
 	}
 
-	BigInt& operator+=( const BigInt& b) {
-		int t = 0, s = 0, i = 0;
-		int n = Length(*this), m = Length(b);
-		if (m > n)
-			this->digits.append(m - n, 0);
-		n = Length(*this);
-		for (i = 0; i < n; i++) {
-			if (i < m)
-				s = (this->digits[i] + b.digits[i]) + t;
+	BigInt& operator+=( const BigInt& other) {
+		int num1 = 0, num2 = 0;
+		int s1 = Length(*this), s2 = Length(other);
+		if (s2 > s1)
+			this->dig.append(s2 - s1, 0);
+		s1 = Length(*this);
+		for (int i = 0; i < s1; i++) {
+			if (i < s2)
+				num2 = (this->dig[i] + other.dig[i]) + num1;
 			else
-				s = this->digits[i] + t;
-			t = s / 10;
-			this->digits[i] = (s % 10);
+				num2 = this->dig[i] + num1;
+			num1 = num2 / 10;
+			this->dig[i] = (num2 % 10);
 		}
-		if (t)
-			this->digits.push_back(t);
+		if (num1)
+			this->dig.push_back(num1);
 		return *this;
 	}
-	BigInt operator+( const BigInt& b) {
-		BigInt temp;
-		temp = *this;
-		temp += b;
-		return temp;
+	BigInt operator+( const BigInt& other) {
+		BigInt temporary;
+		temporary = *this;
+		temporary += other;
+		return temporary;
 	}
 
-	BigInt& operator-=( const BigInt& b) {
-		if (*this < b)
-			throw("UNDERFLOW");
-		int n = Length(*this), m = Length(b);
-		int i, t = 0, s;
-		for (i = 0; i < n;i++) {
-			if (i < m)
-				s = this->digits[i] - b.digits[i] + t;
+	BigInt& operator-=( const BigInt& other) {
+		int s1 = Length(*this), s2 = Length(other);
+		int  num1 = 0, num2;
+		for (int i = 0; i < s1;i++) {
+			if (i < s2)
+				num2 = this->dig[i] - other.dig[i] + num1;
 			else
-				s = this->digits[i] + t;
-			if (s < 0)
-				s += 10,
-				t = -1;
+				num2 = this->dig[i] + num1;
+			if (num2 < 0)
+				num2 += 10,
+				num1 = -1;
 			else
-				t = 0;
-			this->digits[i] = s;
+				num1 = 0;
+			this->dig[i] = num2;
 		}
-		while (n > 1 && this->digits[n - 1] == 0)
-			this->digits.pop_back(),
-			n--;
+		while (s1 > 1 && this->dig[s1 - 1] == 0)
+			this->dig.pop_back(),
+			s1--;
 		return *this;
 	}
-	BigInt operator-( const BigInt& b) {
-		BigInt temp;
-		temp = *this;
-		temp -= b;
-		return temp;
+	BigInt operator-( const BigInt& other) {
+		BigInt temporary;
+		temporary = *this;
+		temporary -= other;
+		return temporary;
 	}
 
-	BigInt& operator*=(const BigInt& b) {
-		if (Null(*this) || Null(b)) {
+	BigInt& operator*=(const BigInt& other) {
+		if (Null(*this) || Null(other)) {
 			*this = BigInt();
 			return *this;
 		}
-		int n = this->digits.size(), m = b.digits.size();
-		//vector<int> v(n + m, 0);
-		int* v = new int[n + m] {0};
+		int s1 = this->dig.size(), s2 = other.dig.size();
+		int* arr = new int[s1 + s2] {0};
 		int size = 0;
-		for (int i = 0; i < n;i++)
-			for (int j = 0; j < m;j++) {
-				v[i + j] += (this->digits[i]) * (b.digits[j]);
+		for (int i = 0; i < s1;i++)
+			for (int j = 0; j < s2;j++) {
+				arr[i + j] += (this->dig[i]) * (other.dig[j]);
 			}
-		for (int i = 0; i < n + m;i++) {
-			if (v[i] != 0)
+		for (int i = 0; i < s1 + s2;i++) {
+			if (arr[i] != 0)
 				size++;
 		}
-		n += m;
-		//cout <<endl << endl << endl << v.size()<< " " <<n<< endl << endl << endl;
+		s1 += s2;
 
-		this->digits.resize(n);
-		for (int s, i = 0, t = 0; i < n; i++) {
-			s = t + v[i];
-			v[i] = s % 10;
-			t = s / 10;
-			this->digits[i] = v[i];
+		this->dig.resize(s1);
+		int num1 = 0 , num2 = 0;
+		for (int i = 0; i < s1; i++) {
+			num1 = num2 + arr[i];
+			arr[i] = num1 % 10;
+			num2 = num1 / 10;
+			this->dig[i] = arr[i];
 		}
-		for (int i = n - 1; i >= 1 && !v[i];i--)
-			this->digits.pop_back();
+		for (int i = s1 - 1; i >= 1 && !arr[i];i--)
+			this->dig.pop_back();
 		return *this;
 	}
 	
 
 	friend BigInt operator*(const BigInt&, const BigInt&);
 
-	BigInt& operator/=( const BigInt& b) {
-		if (Null(b))
-			throw("Arithmetic Error: Division By 0");
-		if (*this < b) {
-			*this = BigInt();
-			return *this;
+	BigInt& operator/=( const BigInt& other) {
+		
+		int counter, idx = 0, check;
+		int s1 = Length(*this), s2 = Length(other);
+		int* arr = new int[s1] {0};
+		BigInt temp;
+		for (counter = s1 - 1; temp * 10 + this->dig[counter] < other;counter--) {
+			temp *= 10;
+			temp += this->dig[counter];
 		}
-		if (*this == b) {
-			*this = BigInt(1);
-			return *this;
+		for (; counter >= 0; counter--) {
+			temp = temp * 10 + this->dig[counter];
+			for (check = 9; check * other > temp;check--);
+			temp -= check * other;
+			arr[idx++] = check;
 		}
-		int i, lgcat = 0, cc;
-		int n = Length(*this), m = Length(b);
-		//vector<int> cat(n, 0);
-		int* cat = new int[n] {0};
-		BigInt t;
-		for (i = n - 1; t * 10 + this->digits[i] < b;i--) {
-			t *= 10;
-			t += this->digits[i];
-		}
-		for (; i >= 0; i--) {
-			t = t * 10 + this->digits[i];
-			for (cc = 9; cc * b > t;cc--);
-			t -= cc * b;
-			cat[lgcat++] = cc;
-		}
-		this->digits.resize(n);
-		for (i = 0; i < lgcat;i++)
-			this->digits[i] = cat[lgcat - i - 1];
-		this->digits.resize(lgcat);
+		this->dig.resize(s1);
+		for (counter = 0; counter < idx;counter++)
+			this->dig[counter] = arr[idx - counter - 1];
+		this->dig.resize(idx);
 		return *this;
 	}
-	BigInt operator/( const BigInt& b) {
+	BigInt operator/( const BigInt& other) {
+		BigInt temporary;
+		temporary = *this;
+		temporary /= other;
+		return temporary;
+	}
+
+	BigInt& operator%=( const BigInt& other) {
+		int counter, idx = 0, check;
+		int s1 = Length(*this), s2 = Length(other);
+		//vector<int> cat(s1, 0);
+		int* arr = new int[s1] {0};
+		BigInt temp;
+		for (counter = s1 - 1; temp * 10 + this->dig[counter] < other;counter--) {
+			temp *= 10;
+			temp += this->dig[counter];
+		}
+		for (; counter >= 0; counter--) {
+			temp = temp * 10 + this->dig[counter];
+			for (check = 9; check * other > temp;check--);
+			temp -= check * other;
+			arr[idx++] = check;
+		}
+		*this = temp;
+		return *this;
+	}
+	BigInt operator%(BigInt& other) {
 		BigInt temp;
 		temp = *this;
-		temp /= b;
+		temp %= other;
 		return temp;
 	}
 
-	BigInt& operator%=( const BigInt& b) {
-		if (Null(b))
-			throw("Arithmetic Error: Division By 0");
-		if (*this < b) {
-			return *this;
-		}
-		if (*this == b) {
-			*this = BigInt();
-			return *this;
-		}
-		int i, lgcat = 0, cc;
-		int n = Length(*this), m = Length(b);
-		//vector<int> cat(n, 0);
-		int* cat = new int[n] {0};
-		BigInt t;
-		for (i = n - 1; t * 10 + this->digits[i] < b;i--) {
-			t *= 10;
-			t += this->digits[i];
-		}
-		for (; i >= 0; i--) {
-			t = t * 10 + this->digits[i];
-			for (cc = 9; cc * b > t;cc--);
-			t -= cc * b;
-			cat[lgcat++] = cc;
-		}
-		*this = t;
-		return *this;
-	}
-	BigInt operator%(BigInt& b) {
-		BigInt temp;
-		temp = *this;
-		temp %= b;
-		return temp;
-	}
-
-	friend void power(BigInt& a, BigInt& b);
+	friend void power(BigInt& first, BigInt& second);
 
 	//Read and Write
 	friend ostream& operator<<(ostream&, const BigInt&);
@@ -291,21 +256,21 @@ public:
 
 
 
-BigInt operator*(const BigInt& a, const BigInt& b) {
+BigInt operator*(const BigInt& first, const BigInt& second) {
 	BigInt temp;
-	temp = a;
-	temp *= b;
+	temp = first;
+	temp *= second;
 	return temp;
 }
 
 
-	void power(BigInt& a, BigInt& b) {
-		if ((b.digits.size() == 1 && b.digits[0] == 0))
-			a = 1;
+	void power(BigInt& first, BigInt& second) {
+		if ((second.dig.size() == 1 && second.dig[0] == 0))
+			first = 1;
 		else {
-			BigInt temp(a), i(1);
-			for (i; i < b; i++) {
-				a = a * temp;
+			BigInt temp(first), i(1);
+			for (i; i < second; i++) {
+				first = first * temp;
 			}
 		}
 	}
@@ -313,17 +278,17 @@ BigInt operator*(const BigInt& a, const BigInt& b) {
 istream& operator>>(istream& in, BigInt& a) {
 	string s;
 	in >> s;
-	int n = s.size();
-	for (int i = n - 1; i >= 0;i--) {
+	int s1 = s.size();
+	for (int i = s1 - 1; i >= 0;i--) {
 		if (!isdigit(s[i]))
 			throw("INVALID NUMBER");
-		a.digits[n - i - 1] = s[i];
+		a.dig[s1 - i - 1] = s[i];
 	}
 	return in;
 }
 
 ostream& operator<<(ostream& out, const BigInt& a) {
-	for (int i = a.digits.size() - 1; i >= 0;i--)
-		cout << (short)a.digits[i];
+	for (int i = a.dig.size() - 1; i >= 0;i--)
+		cout << (short)a.dig[i];
 	return cout;
 }

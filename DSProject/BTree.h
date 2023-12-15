@@ -492,17 +492,17 @@ public:
         }
         for (i = 1; i <= root->n;i++) {
             ///SPlit
-            if (root->keys[i] <= Threshold){
-                DoublyNode<string>* curr = root->listData[i].head;
+            if (root->keys[i - 1] <= Threshold){
+                DoublyNode<string>* curr = root->listData[i -1].head;
                 while (curr) {
-                    A.insert(root->keys[i], curr->data);
+                    A.insert(root->keys[i-1], curr->data);
                     curr = curr->next;
                 }
             }
             else {
-                DoublyNode<string>* curr = root->listData[i].head;
+                DoublyNode<string>* curr = root->listData[i- 1].head;
                 while (curr) {
-                    B.insert(root->keys[i], curr->data);
+                    B.insert(root->keys[i -1], curr->data);
                     curr = curr->next;
                 }
             }
@@ -512,11 +512,26 @@ public:
         }
     }
 
-    void merge_traversal(BNode* ARoot, BTree& NewTree) {
+    void merge_traversal(BNode* root, BTree& NewTree) {
+        int i = 0;
+        if (root->children[i] != nullptr) {
+            merge_traversal(root->children[i], NewTree);
+        }
+        for (i = 1; i <= root->n;i++) {
+            ///Merge
+            DoublyNode<string>* curr = root->listData[i - 1].head;
+            while (curr) {
+                NewTree.insert(root->keys[i - 1], curr->data);
+                curr = curr->next;
+            }
 
+            if (root->children[i] != nullptr)
+                merge_traversal(root->children[i], NewTree);
+        }
     }
 
     void merge(BNode* ARoot, BNode* BRoot, BTree& NewTree) {
-
+        merge_traversal(ARoot, NewTree);
+        merge_traversal(BRoot, NewTree);
     }
 

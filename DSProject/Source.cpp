@@ -16,7 +16,9 @@ int main(){
 	//BigInt number(3), po(3);
 	//power(number, po);
 	//cout << number;
-	/*BTree t(4);
+	
+	BTree t(4);
+
 	BigInt a(2);
 	BigInt b(6);
 	BigInt c(7);
@@ -25,7 +27,7 @@ int main(){
 	BigInt f(10);
 	BigInt g(20);
 	BigInt h(21);
-	BigInt i(1);
+	BigInt r(1);
 	BigInt j(3);
 	BigInt k(5);
 	BigInt l(11);
@@ -36,8 +38,7 @@ int main(){
 	BigInt q(13);
 
 	t.insert(a, "World2.1");
-	t.insert(a, "World2.2");
-	t.insert(a, "World2.3");
+	
 	t.insert(b, "World6");
 	t.insert(c, "World7");
 	t.insert(d, "World8");
@@ -45,7 +46,7 @@ int main(){
 	t.insert(f, "World10");
 	t.insert(g, "Worl20");
 	t.insert(h, "Worl21");
-	t.insert(i, "World1");
+	t.insert(r, "World1");
 	t.deletion(d);
 	t.insert(j, "World3");
 	t.insert(k, "World5");
@@ -55,14 +56,26 @@ int main(){
 	t.insert(o, "World12");
 	t.insert(p, "World16");
 	t.insert(q, "World13");
-	t.deletion(a);
-	t.deletion(a);*/
+	//t.deletion(a);
+	//t.deletion(a);
 	//t.deletion(8);
 	//t.deletion(8);
 
 
+	cout << endl;
+	t.levelOrderTraversal();
 	//cout << t.root->keys[3];
-
+	BTree t1(4);
+	BTree t2(4);
+	split(t.root, t1, t2, c);
+	cout << endl;
+	t1.levelOrderTraversal();
+	cout << endl;
+	t2.levelOrderTraversal();
+	cout << endl;
+	BTree tNew(4);
+	merge(t1.root, t2.root, tNew);
+	tNew.levelOrderTraversal();
 
     //cout << "The B-tree is: ";
     //t.traverse_pelyvala();
@@ -87,45 +100,45 @@ int main(){
 	//BigInt second(1);
 	//cout << first + second;
 
-	int identifierspace = 0;
-	cout << "\nEnter your identifier space\n";
-	cin >> identifierspace;
+	//int identifierspace = 0;
+	//cout << "\nEnter your identifier space\n";
+	//cin >> identifierspace;
 
-	cout << endl;
-	cout << sha_from_file("files/test.PNG", identifierspace)<< endl;
-	cout << sha_from_file("files/out.txt", identifierspace) << endl;
-	cout << sha_from_file("files/2.JPG", identifierspace)   << endl;
-	cout << sha_from_file("files/vid1.mkv", identifierspace)   << endl;
-	cout << sha_from_file("files/vid2.mkv", identifierspace)   << endl;
-	cout << sha_from_file("files/vid3.mkv", identifierspace)   << endl;
-	cout << sha_from_file("files/vid4.mkv", identifierspace)   << endl;
-	cout << sha_from_file("files/voice1.wav", identifierspace)   << endl;
-	cout << sha_from_file("files/voice2.wav", identifierspace)   << endl;
+	//cout << endl;
+	//cout << sha_from_file("files/test.PNG", identifierspace)<< endl;
+	//cout << sha_from_file("files/out.txt", identifierspace) << endl;
+	//cout << sha_from_file("files/2.JPG", identifierspace)   << endl;
+	//cout << sha_from_file("files/vid1.mkv", identifierspace)   << endl;
+	//cout << sha_from_file("files/vid2.mkv", identifierspace)   << endl;
+	//cout << sha_from_file("files/vid3.mkv", identifierspace)   << endl;
+	//cout << sha_from_file("files/vid4.mkv", identifierspace)   << endl;
+	//cout << sha_from_file("files/voice1.wav", identifierspace)   << endl;
+	//cout << sha_from_file("files/voice2.wav", identifierspace)   << endl;
 
 
-	cout << "\nTEST FOR MACHINES:\n";
-	DoublyLinkedList<routing_table<machine>> dll;
-	CircularLinkedList<machine> DHT;
+	//cout << "\nTEST FOR MACHINES:\n";
+	//DoublyLinkedList<routing_table<machine>> dll;
+	//CircularLinkedList<machine> DHT;
 
-	int machinenum;
-	cout << "\nEnter the number of machines u want\n";
-	cin >> machinenum;
+	//int machinenum;
+	//cout << "\nEnter the number of machines u want\n";
+	//cin >> machinenum;
 
-	string machinename = "";
-	machine** machines = new machine * [machinenum];
-	for (int i = 0; i < machinenum; i++)
-	{
-		cout << "\nEnter Name of machine\n";
-		cin >> machinename;
-		machines[i] = new machine(machinename, &dll, &DHT, identifierspace);
-	}
+	//string machinename = "";
+	//machine** machines = new machine * [machinenum];
+	//for (int i = 0; i < machinenum; i++)
+	//{
+	//	cout << "\nEnter Name of machine\n";
+	//	cin >> machinename;
+	//	machines[i] = new machine(machinename, &dll, &DHT, identifierspace);
+	//}
 
-	/*machine m1("9", &dll, &DHT, identifierspace);
-	machine m2("4", &dll, &DHT, identifierspace);
-	machine m3("18", &dll, &DHT, identifierspace);
-	machine m4("1", &dll, &DHT, identifierspace);
-	machine m5("20", &dll, &DHT, identifierspace);
-	m5.print();*/
-	DHT.printallrt();
-	DHT.print_machine();
+	///*machine m1("9", &dll, &DHT, identifierspace);
+	//machine m2("4", &dll, &DHT, identifierspace);
+	//machine m3("18", &dll, &DHT, identifierspace);
+	//machine m4("1", &dll, &DHT, identifierspace);
+	//machine m5("20", &dll, &DHT, identifierspace);
+	//m5.print();*/
+	//DHT.printallrt();
+	//DHT.print_machine();
 }
