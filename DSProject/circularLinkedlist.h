@@ -72,13 +72,14 @@ public:
 		}
 	}
 
-	void insertmachine(T da)
+	bool insertmachine(T da)
 	{
 		Node<T>* newnode = new Node<T>(da, NULL);
 		if (isEmpty())
 		{
 			head = newnode;
 			head->setNext(head);
+			return true;
 		}
 		else
 		{
@@ -89,9 +90,15 @@ public:
 				{
 					curr = curr->next;
 				}
+				if (curr->data.real_ID == newnode->data.real_ID)
+				{
+					cout << "\nMachine of this ID already exists\n";
+					return false;
+				}
 				newnode->next = curr->next;
 				curr->next = newnode;
 				head = newnode;
+				return true;
 			}
 			else
 			{
@@ -100,8 +107,14 @@ public:
 				{
 					curr = curr->next;
 				}
+				if (curr->next->data.real_ID == newnode->data.real_ID)
+				{
+					cout << "\nMachine of this ID already exists\n";
+					return false;
+				}
 				newnode->next = curr->next;
 				curr->next = newnode;
+				return true;
 			}
 		}
 	}
@@ -121,6 +134,25 @@ public:
 		}
 		return check;
 	}
+
+	Node<T>* search_machine(T x)
+	{
+		Node<T>* temp = head;
+		while (temp->getNext() != head)
+		{
+			if (temp->getData().real_ID == x.real_ID)
+			{
+				return temp;
+			}
+			temp = temp->getNext();
+		}
+		if (temp->getData().real_ID == x.real_ID)
+		{
+			return temp;
+		}
+		return nullptr;
+	}
+
 	void update(T x, T replace)
 	{
 		Node<T>* temp = head;
@@ -175,6 +207,19 @@ public:
 		do
 		{
 			cout << temp->getData() << " ";
+			temp = temp->getNext();
+		} while (temp != head);
+		cout << endl;
+	}
+
+	void printallrt()
+	{
+		Node<T>* temp = head;
+		do
+		{
+			cout << "\nMachine: " << temp->data.real_ID << endl;
+			temp->data.printrt();
+			cout << "\n";
 			temp = temp->getNext();
 		} while (temp != head);
 		cout << endl;

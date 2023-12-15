@@ -64,14 +64,16 @@ public:
 		power(two, mod);
 		real_ID = real_ID % two; //seperating the last bits given by identifier space of user
 
-		nodeBTree = new BTree(idspace);
 		cout << "\nId of Machine: \n" << real_ID << endl;
 		rt = new routing_table<machine>{ idspace , real_ID};
-		DHT->insertmachine(*this);
-		successor(DHT);
-		dll->insert(*rt);
-		routablelist = dll;
-		updateroutinglist(DHT);
+		if((DHT->insertmachine(*this)));
+		{
+			nodeBTree = new BTree(idspace);
+			successor(DHT);
+			dll->insert(*rt);
+			routablelist = dll;
+			updateroutinglist(DHT);
+		}
 	}
 	void setId_SHA(string nm)
 	{
@@ -122,7 +124,7 @@ public:
 		}
 	}
 
-	void print()
+	void printrt()
 	{
 		rt->print();
 	}
