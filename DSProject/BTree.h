@@ -483,6 +483,40 @@ public:
             lvl++;
             std::cout << std::endl;
         }
-    }
+    }    
 };
+    void split(BNode* root ,BTree& A, BTree& B, BigInt Threshold) {
+        int i = 0;
+        if (root->children[i] != nullptr) {
+            split(root->children[i], A, B, Threshold);
+        }
+        for (i = 1; i <= root->n;i++) {
+            ///SPlit
+            if (root->keys[i] <= Threshold){
+                DoublyNode<string>* curr = root->listData[i].head;
+                while (curr) {
+                    A.insert(root->keys[i], curr->data);
+                    curr = curr->next;
+                }
+            }
+            else {
+                DoublyNode<string>* curr = root->listData[i].head;
+                while (curr) {
+                    B.insert(root->keys[i], curr->data);
+                    curr = curr->next;
+                }
+            }
+
+            if (root->children[i] != nullptr)
+                split(root->children[i], A, B, Threshold);
+        }
+    }
+
+    void merge_traversal(BNode* ARoot, BTree& NewTree) {
+
+    }
+
+    void merge(BNode* ARoot, BNode* BRoot, BTree& NewTree) {
+
+    }
 
