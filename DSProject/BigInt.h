@@ -1,18 +1,17 @@
 // C++ program to implement
 // the above approach
-#pragma once
 #include <iostream>
-//#include <vector>
+#include <vector>
 #include <bits.h>
 using namespace std;
 
+using namespace std;
 
 class BigInt {
-public:
 	string digits;
+public:
 
 	//Constructors:
-	
 	BigInt(unsigned long long n = 0);
 	BigInt(string&);
 	BigInt(const char*);
@@ -230,21 +229,13 @@ BigInt& operator*=(BigInt& a, const BigInt& b) {
 		return a;
 	}
 	int n = a.digits.size(), m = b.digits.size();
-	//vector<int> v(n + m, 0);
-	int* v = new int[n + m] {0};
-	int size = 0;
+	vector<int> v(n + m, 0);
 	for (int i = 0; i < n;i++)
 		for (int j = 0; j < m;j++) {
 			v[i + j] += (a.digits[i]) * (b.digits[j]);
 		}
-	for (int i = 0; i < n + m;i++) {
-		if (v[i] != 0)
-			size++;
-	}
 	n += m;
-	//cout <<endl << endl << endl << v.size()<< " " <<n<< endl << endl << endl;
-
-	a.digits.resize(n);
+	a.digits.resize(v.size());
 	for (int s, i = 0, t = 0; i < n; i++) {
 		s = t + v[i];
 		v[i] = s % 10;
@@ -275,8 +266,7 @@ BigInt& operator/=(BigInt& a, const BigInt& b) {
 	}
 	int i, lgcat = 0, cc;
 	int n = Length(a), m = Length(b);
-	//vector<int> cat(n, 0);
-	int* cat = new int[n] {0};
+	vector<int> cat(n, 0);
 	BigInt t;
 	for (i = n - 1; t * 10 + a.digits[i] < b;i--) {
 		t *= 10;
@@ -288,7 +278,7 @@ BigInt& operator/=(BigInt& a, const BigInt& b) {
 		t -= cc * b;
 		cat[lgcat++] = cc;
 	}
-	a.digits.resize(n);
+	a.digits.resize(cat.size());
 	for (i = 0; i < lgcat;i++)
 		a.digits[i] = cat[lgcat - i - 1];
 	a.digits.resize(lgcat);
@@ -313,8 +303,7 @@ BigInt& operator%=(BigInt& a, const BigInt& b) {
 	}
 	int i, lgcat = 0, cc;
 	int n = Length(a), m = Length(b);
-	//vector<int> cat(n, 0);
-	int* cat = new int[n] {0};
+	vector<int> cat(n, 0);
 	BigInt t;
 	for (i = n - 1; t * 10 + a.digits[i] < b;i--) {
 		t *= 10;
