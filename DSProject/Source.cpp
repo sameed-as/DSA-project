@@ -17,7 +17,7 @@ int main(){
 	BigInt number(3), po(3);
 	power(number, po);
 	cout << number;
-	cout << "Enter your identifier space\n";
+	cout << "\nEnter your identifier space\n";
 	cin >> identifierspace;
 	BTree t(4);
 	BigInt a(2);
@@ -86,9 +86,11 @@ int main(){
 		current = current->getNext();
 	} while (current != cll.getHead());
 
-	sha_from_file("files/test.PNG");
-	sha_from_file("files/out.txt");
-	sha_from_file("files/2.JPG");
+	cout << endl;
+	cout << sha_from_file("files/test.PNG", identifierspace)<< endl;
+	cout << sha_from_file("files/out.txt", identifierspace) << endl;
+	cout << sha_from_file("files/2.JPG", identifierspace)   << endl;
+
 
 	BigInt first(1);
 	BigInt second(1);
