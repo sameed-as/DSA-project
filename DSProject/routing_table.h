@@ -3,6 +3,7 @@
 #include "DoublyLL.h"
 #include "BigInt.h"
 #include <string>
+#include <iomanip>
 
 using namespace std;
 
@@ -36,4 +37,14 @@ public:
 		cout << endl;
 	}
 
+	void print()
+	{
+		cout << "____________________________________\n";
+		cout << "|  index  |  value  |  Machine ID  |\n";
+		for (int i = 0; i < total_enteries; i++)
+		{
+			cout << "____________________________________\n";
+			cout << "|  " << setw(5) << i << "  |  " << vals[i] << "  |  " << succ[i]->data.real_ID << "  |\n";
+		}
+	}
 };

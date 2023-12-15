@@ -122,6 +122,11 @@ public:
 		}
 	}
 
+	void print()
+	{
+		rt->print();
+	}
+
 	~machine()
 	{
 	}

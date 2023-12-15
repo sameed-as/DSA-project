@@ -14,9 +14,9 @@
 using namespace std;
 int main(){
 	int identifierspace = 0;
-	BigInt number(3), po(3);
-	power(number, po);
-	cout << number;
+	//BigInt number(3), po(3);
+	//power(number, po);
+	//cout << number;
 	cout << "\nEnter your identifier space\n";
 	cin >> identifierspace;
 	BTree t(4);
@@ -111,4 +111,6 @@ int main(){
 	machine m3("18", &dll, &DHT, identifierspace);
 	machine m4("1", &dll, &DHT, identifierspace);
 	machine m5("20", &dll, &DHT, identifierspace);
+	m5.print();
+	DHT.print_machine();
 }

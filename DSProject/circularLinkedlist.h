@@ -180,6 +180,20 @@ public:
 		cout << endl;
 	}
 
+	void print_machine()
+	{
+		Node<T>* temp = head;
+		int i = 0;
+		do
+		{
+			cout << "Machine " << i << ": ";
+			cout << temp->data.real_ID << "\n";
+			temp = temp->getNext();
+			i++;
+		} while (temp != head);
+		cout << endl;
+	}
+
 	BigInt maximumval(T data)
 	{
 		Node<T>* curr = head;
