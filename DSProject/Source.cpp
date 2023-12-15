@@ -90,6 +90,12 @@ int main(){
 	cout << sha_from_file("files/test.PNG", identifierspace)<< endl;
 	cout << sha_from_file("files/out.txt", identifierspace) << endl;
 	cout << sha_from_file("files/2.JPG", identifierspace)   << endl;
+	cout << sha_from_file("files/vid1.mkv", identifierspace)   << endl;
+	cout << sha_from_file("files/vid2.mkv", identifierspace)   << endl;
+	cout << sha_from_file("files/vid3.mkv", identifierspace)   << endl;
+	cout << sha_from_file("files/vid4.mkv", identifierspace)   << endl;
+	cout << sha_from_file("files/voice1.wav", identifierspace)   << endl;
+	cout << sha_from_file("files/voice2.wav", identifierspace)   << endl;
 
 
 	BigInt first(1);
