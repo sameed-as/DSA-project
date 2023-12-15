@@ -1,5 +1,4 @@
-// Inserting a key on a B-tree in C++
-// using the input of max nodes from user
+
 #pragma once
 #include<cmath>
 #include "doublyLL.h"
@@ -59,7 +58,7 @@ public:
                 rightChild->n--;
             j++;
         }
-        
+
         j = 0;
         if (leftChild->isleaf() == false) {
             for (int j = 0; j < tmin; j++)
@@ -105,7 +104,7 @@ public:
             }
             children[i + 1]->insertFreeSpace(k, dataVal);
         }
-        
+
         else {
             while (i >= 0 && keys[i] > k) {
                 keys[i + 1] = keys[i];
@@ -158,15 +157,15 @@ public:
         tmin = ceil((tmax + 1) / 2.0);
     }
 
-    
+
 
     void traverse_pelyvala() {
         if (root != NULL) {
             root->traverse();
         }
     }
-    
-    
+
+
 
     void insert(BigInt k, string dataValue) {
         if (root == NULL) {
@@ -176,7 +175,7 @@ public:
             root->n = 1;
         }
         else {
-            if (!Search(root, k, dataValue)) {
+            if (!searchForDupsInsert(root, k, dataValue)) {
                 if (root->n == tmax) {
                     BNode* newRoot = new BNode(tmax);
 
@@ -197,7 +196,7 @@ public:
         }
 
     }
-    bool Search(BNode*& r, BigInt k, string dataVal) {
+    bool searchForDupsInsert(BNode*& r, BigInt k, string dataVal) {
         int i = 0;
         while (i < r->n && k > r->keys[i]) {
             i++;
@@ -209,7 +208,7 @@ public:
         if (r->isleaf()) {
             return false;
         }
-        return Search(r->children[i], k, dataVal);
+        return searchForDupsInsert(r->children[i], k, dataVal);
     }
     bool  Search_forDel(BNode*& r, BigInt k) {
         int i = 0;
@@ -226,6 +225,7 @@ public:
                 cout << "Choose your Data to delete: " << endl;
                 cin >> choice;
                 r->listData[i].deleteData(choice);
+                cout << endl;
             }
             return true;
         }
@@ -257,15 +257,19 @@ public:
             }
             //the value to be deleted is replaced with the largest value in left subtree
             BigInt temp = change_k->keys[i];
+            DoublyLinkedList<string> listTemp;
+            listTemp = change_k->listData[i];
             change_k->keys[i] = node->keys[node->n - 1];
+            change_k->listData[i] = node->listData[node->n - 1];
             node->keys[node->n - 1] = temp;
+            node->listData[node->n - 1] = listTemp;
             found = false;
             k_swaped = true;
             vapis_mur = false;
             delete_helper(change_k->children[i], change_k, k, i, found, k_swaped, delete_occured, root, root_Updated);//again deletion will be call for updated key
             node = change_k;
         }
-        if (node == root && root->n == 1 && root->isleaf()) {
+        if (node == root && root->n == 1 && root->isleaf() && !parent) {
             root->n--;
             root = NULL;
             return;
@@ -275,6 +279,7 @@ public:
                 if (node->n >= tmin) {
                     while (i < node->n) {
                         node->keys[i] = node->keys[i + 1];
+                        node->listData[i] = node->listData[i + 1];
                         i++;
                     }
                     node->n -= 1;
@@ -286,11 +291,14 @@ public:
                         int idx = i;
                         while (idx > 0) {
                             node->keys[idx] = node->keys[idx - 1];
+                            node->listData[idx] = node->listData[idx - 1];
                             idx--;
                         }
 
                         node->keys[0] = parent->keys[pos - 1];
+                        node->listData[0] = parent->listData[pos - 1];
                         parent->keys[pos - 1] = parent->children[pos - 1]->keys[parent->children[pos - 1]->n - 1];
+                        parent->listData[pos - 1] = parent->children[pos - 1]->listData[parent->children[pos - 1]->n - 1];
                         parent->children[pos - 1]->n--;
                         idx = node->n;
                         while (idx > 0) {
@@ -306,12 +314,15 @@ public:
                         int idx = i;
                         while (idx < node->n - 1) {
                             node->keys[idx] = node->keys[idx + 1];
+                            node->listData[idx] = node->listData[idx + 1];
                             idx++;
                         }
                         if (node->n == 0)
                             node->n++;
                         node->keys[node->n - 1] = parent->keys[pos];
+                        node->listData[node->n - 1] = parent->listData[pos];
                         parent->keys[pos] = parent->children[pos + 1]->keys[0];
+                        parent->listData[pos] = parent->children[pos + 1]->listData[0];
                         int j = 0;
                         while (j < parent->children[pos + 1]->n - 1) {
                             parent->children[pos + 1]->keys[j] = parent->children[pos + 1]->keys[j + 1];
@@ -334,16 +345,19 @@ public:
                             if (!delete_occured) {
                                 while (idx < node->n - 1) {
                                     node->keys[idx] = node->keys[idx + 1];
+                                    node->listData[idx] = node->listData[idx + 1];
                                     idx++;
                                 }
                                 node->n--;
                             }
                             parent->children[pos - 1]->keys[parent->children[pos - 1]->n] = parent->keys[pos - 1];
+                            parent->children[pos - 1]->listData[parent->children[pos - 1]->n] = parent->listData[pos - 1];
                             parent->children[pos - 1]->n++;
                             int inc_n = 0;
                             idx = 0;
                             while (idx < node->n) {
                                 parent->children[pos - 1]->keys[idx + parent->children[pos - 1]->n] = node->keys[idx];
+                                parent->children[pos - 1]->listData[idx + parent->children[pos - 1]->n] = node->listData[idx];
                                 inc_n++;
                                 idx++;
                             }
@@ -356,6 +370,7 @@ public:
                             idx = pos - 1;
                             while (idx < parent->n - 1) {
                                 parent->keys[idx] = parent->keys[idx + 1];
+                                parent->listData[idx] = parent->listData[idx + 1];
                                 idx++;
                             }
                             idx = pos;
@@ -377,18 +392,21 @@ public:
                             if (!delete_occured) {
                                 while (idx < node->n - 1) {
                                     node->keys[idx] = node->keys[idx + 1];
+                                    node->listData[idx] = node->listData[idx + 1];
                                     idx++;
                                 }
                                 node->keys[node->n - 1] = parent->keys[pos];
-
+                                node->listData[node->n - 1] = parent->listData[pos];
                             }
                             else {
                                 node->keys[node->n] = parent->keys[pos];
+                                node->listData[node->n] = parent->listData[pos];
                                 node->n++;
                             }
                             idx = 0;
                             while (idx < parent->children[pos + 1]->n) {
                                 node->keys[node->n + idx] = parent->children[pos + 1]->keys[idx];
+                                node->listData[node->n + idx] = parent->children[pos + 1]->listData[idx];
                                 idx++;
                                 inc_n++;
                             }
@@ -402,6 +420,7 @@ public:
                             idx = pos;
                             while (idx < parent->n - 1) {
                                 parent->keys[idx] = parent->keys[idx + 1];
+                                parent->listData[idx] = parent->listData[idx + 1];
                                 idx++;
                             }
                             idx = pos + 1;
@@ -432,4 +451,38 @@ public:
         if (!Search_forDel(root, k))
             delete_helper(root, temp, k, pos, found, k_swaped, delete_occured, root, root_Updated);
     }
+
+    void levelOrderTraversal() const {
+        if (!root) {
+            std::cout << "Tree is empty." << std::endl;
+            return;
+        }
+
+        std::queue<BNode*> q;
+        q.push(root);
+        int lvl = 1;
+        while (!q.empty()) {
+            cout << "Level : " << lvl << " : ";
+            int size = q.size();
+            for (int i = 0; i < size; ++i) {
+                BNode* current = q.front();
+                q.pop();
+
+                for (int j = 0; j < current->n; ++j) {
+                    std::cout << current->keys[j] << " ";
+                }
+                cout << "\t";
+                if (!current->isleaf()) {
+                    for (int j = 0; j <= current->n; ++j) {
+                        if (current->children[j]) {
+                            q.push(current->children[j]);
+                        }
+                    }
+                }
+            }
+            lvl++;
+            std::cout << std::endl;
+        }
+    }
 };
+
