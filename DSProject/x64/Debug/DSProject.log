@@ -1,17 +1,1 @@
-﻿  Source.cpp
-C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\BTree.h(33,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\BTree.h(139,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\BigInt.h(68,18): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\BigInt.h(83,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\BigInt.h(99,24): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\BigInt.h(137,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\BigInt.h(156,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\BigInt.h(230,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\BigInt.h(230,46): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\BigInt.h(350,18): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\BigInt.h(360,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\routing_table.h(31,26): warning C4244: 'initializing': conversion from 'double' to 'unsigned __int64', possible loss of data
-C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\routing_table.h(23): message : while compiling class template member function 'routing_table<machine>::routing_table(int,BigInt)'
-C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\machine.h(65): message : see reference to function template instantiation 'routing_table<machine>::routing_table(int,BigInt)' being compiled
-C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\machine.h(65): message : see reference to class template instantiation 'routing_table<machine>' being compiled
-  DSProject.vcxproj -> C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\x64\Debug\DSProject.exe
+﻿  DSProject.vcxproj -> C:\Users\hi\source\repos\sameed-as\DSA-project\DSProject\x64\Debug\DSProject.exe

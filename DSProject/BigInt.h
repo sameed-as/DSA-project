@@ -57,6 +57,9 @@ public:
 	friend BigInt operator%(const BigInt&, const BigInt&);
 	friend BigInt& operator%=(BigInt&, const BigInt&);
 
+	//power
+	friend void power(BigInt& a,BigInt& b);
+
 	//Read and Write
 	friend ostream& operator<<(ostream&, const BigInt&);
 	friend istream& operator>>(istream&, BigInt&);
@@ -334,7 +337,19 @@ BigInt operator%(BigInt& a, BigInt& b) {
 	return temp;
 }
 
-
+void power(BigInt& a, BigInt& b)
+{
+	if (Null(b))
+		a = 1;
+	else
+	{
+		BigInt temp(a), i(1);
+		for (i; i < b; i++)
+		{
+			a = a * temp;
+		}
+	}
+}
 
 
 

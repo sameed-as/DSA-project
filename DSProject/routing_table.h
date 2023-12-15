@@ -20,7 +20,7 @@ public:
 		vals = nullptr;
 		total_enteries = 0;
 	}
-	routing_table(int num, BigInt id)
+	routing_table(unsigned long long num, BigInt id)
 	{
 		idx = 0;
 		total_enteries = num;

@@ -29,7 +29,7 @@ public:
 		rt = nullptr;
 	}
 
-	machine(string nm, DoublyLinkedList<routing_table<machine>>* dll, CircularLinkedList<machine>* DHT)
+	machine(string nm, DoublyLinkedList<routing_table<machine>>* dll, CircularLinkedList<machine>* DHT, unsigned long long idspace)
 	{
 		char t;
 		for (int i = 0; nm[i] != '\0'; i++)
@@ -60,13 +60,18 @@ public:
 			real_ID = temp;
 		}
 
+		BigInt mod(idspace), two(2);
+		power(two, mod);
+		real_ID = real_ID % two; //seperating the last bits given by identifier space of user
+
 		nodeBTree = NULL;
 		cout << "\nId of Machine: \n" << real_ID << endl;
-		rt = new routing_table<machine>{ 5 , real_ID};
+		rt = new routing_table<machine>{ idspace , real_ID};
 		DHT->insertmachine(*this);
 		successor(DHT);
 		dll->insert(*rt);
 		routablelist = dll;
+		updateroutinglist(DHT);
 	}
 	void setId_SHA(string nm)
 	{
@@ -77,6 +82,8 @@ public:
 
 	void successor(CircularLinkedList<machine>* DHT)
 	{
+
+		cout << "\nId of Machine: \n" << real_ID << endl;
 		Node<machine>* temp = DHT->getHead();
 		machine dummy;
 		for (int i = 0; i < rt->total_enteries; i++)
@@ -99,7 +106,19 @@ public:
 					rt->succ[i] = temp->next;
 				}
 			}
-			cout << rt->succ[i]->data.real_ID << endl;
+			cout << i << " node ID " << rt->succ[i]->data.real_ID << endl;
+		}
+	}
+
+	void updateroutinglist(CircularLinkedList<machine>* DHT)
+	{
+		Node<machine>* curr = DHT->getHead();
+		curr->data.successor(DHT);
+		curr = curr->next;
+		while (curr != DHT->getHead())
+		{
+			curr->data.successor(DHT);
+			curr = curr->next;
 		}
 	}
 

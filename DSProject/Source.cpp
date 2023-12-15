@@ -13,6 +13,12 @@
 
 using namespace std;
 int main(){
+	int identifierspace = 0;
+	BigInt number(3), po(3);
+	power(number, po);
+	cout << number;
+	cout << "Enter your identifier space\n";
+	cin >> identifierspace;
 	BTree t(4);
 	BigInt a(2);
 	BigInt b(6);
@@ -92,9 +98,9 @@ int main(){
 	DoublyLinkedList<routing_table<machine>> dll;
 	CircularLinkedList<machine> DHT;
 
-	machine m1("9", &dll, &DHT);
-	machine m2("4", &dll, &DHT);
-	machine m3("18", &dll, &DHT);
-	machine m4("1", &dll, &DHT);
-	machine m5("20", &dll, &DHT);
+	machine m1("9", &dll, &DHT, identifierspace);
+	machine m2("4", &dll, &DHT, identifierspace);
+	machine m3("18", &dll, &DHT, identifierspace);
+	machine m4("1", &dll, &DHT, identifierspace);
+	machine m5("20", &dll, &DHT, identifierspace);
 }
