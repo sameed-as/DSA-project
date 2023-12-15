@@ -8,10 +8,11 @@
 #pragma comment(lib, "ws2_32.lib")
 #include <fstream>
 #include <iostream>
+#include "BigInt.h"
 
 using namespace std;
 
-int sha_from_file(string s)
+BigInt sha_from_file(string s, unsigned long long idspace)
 {
 	ifstream f(s, fstream::binary);
 	ofstream f1("files/in.txt", fstream::trunc | fstream::binary);
@@ -33,12 +34,24 @@ int sha_from_file(string s)
 	SHA1(input, i, output); // i is used as length of input string bcz strlen terminates calculation when \0 is encountered
 
 	for (int j = 0; j < 20; j++)
-		printf("%02x", output[j]);
+		printf("%d", output[j]);
 	cout << endl;
+
+	string id = "";
+	int k;
+	for (k = 0; k < 20; k++)
+	{
+		int n = int(output[k]);
+		id += to_string(n);
+	}
+	BigInt ID_BigInt(id);
+	BigInt po(idspace), mod(2);
+	power(mod, po);
+	ID_BigInt = ID_BigInt % mod;
 
 	f1 << f.rdbuf();
 	f.close();
 	f1.close();
-	return 0;
+	return ID_BigInt;
 	
 }

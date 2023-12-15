@@ -1,15 +1,14 @@
-// C++ program to implement
-// the above approach
+#pragma once
 #include <iostream>
-#include <vector>
+//#include <vector>
 #include <bits.h>
 using namespace std;
 
 using namespace std;
 
 class BigInt {
-	string digits;
 public:
+	string digits = "";
 
 	//Constructors:
 	BigInt(unsigned long long n = 0);
@@ -57,6 +56,9 @@ public:
 	//Modulo
 	friend BigInt operator%(const BigInt&, const BigInt&);
 	friend BigInt& operator%=(BigInt&, const BigInt&);
+
+	//power
+	friend void power(BigInt& a,BigInt& b);
 
 	//Read and Write
 	friend ostream& operator<<(ostream&, const BigInt&);
@@ -170,12 +172,12 @@ BigInt BigInt::operator--(int temp) {
 }
 
 BigInt& operator+=(BigInt& a, const BigInt& b) {
-	int t = 0, s, i;
+	int t = 0, s = 0, i = 0;
 	int n = Length(a), m = Length(b);
 	if (m > n)
 		a.digits.append(m - n, 0);
 	n = Length(a);
-	for (i = 0; i < n;i++) {
+	for (i = 0; i < n; i++) {
 		if (i < m)
 			s = (a.digits[i] + b.digits[i]) + t;
 		else
@@ -229,13 +231,21 @@ BigInt& operator*=(BigInt& a, const BigInt& b) {
 		return a;
 	}
 	int n = a.digits.size(), m = b.digits.size();
-	vector<int> v(n + m, 0);
+	//vector<int> v(n + m, 0);
+	int* v = new int[n + m] {0};
+	int size = 0;
 	for (int i = 0; i < n;i++)
 		for (int j = 0; j < m;j++) {
 			v[i + j] += (a.digits[i]) * (b.digits[j]);
 		}
+	for (int i = 0; i < n + m;i++) {
+		if (v[i] != 0)
+			size++;
+	}
 	n += m;
-	a.digits.resize(v.size());
+	//cout <<endl << endl << endl << v.size()<< " " <<n<< endl << endl << endl;
+
+	a.digits.resize(n);
 	for (int s, i = 0, t = 0; i < n; i++) {
 		s = t + v[i];
 		v[i] = s % 10;
@@ -266,7 +276,8 @@ BigInt& operator/=(BigInt& a, const BigInt& b) {
 	}
 	int i, lgcat = 0, cc;
 	int n = Length(a), m = Length(b);
-	vector<int> cat(n, 0);
+	//vector<int> cat(n, 0);
+	int* cat = new int[n] {0};
 	BigInt t;
 	for (i = n - 1; t * 10 + a.digits[i] < b;i--) {
 		t *= 10;
@@ -278,7 +289,7 @@ BigInt& operator/=(BigInt& a, const BigInt& b) {
 		t -= cc * b;
 		cat[lgcat++] = cc;
 	}
-	a.digits.resize(cat.size());
+	a.digits.resize(n);
 	for (i = 0; i < lgcat;i++)
 		a.digits[i] = cat[lgcat - i - 1];
 	a.digits.resize(lgcat);
@@ -303,7 +314,8 @@ BigInt& operator%=(BigInt& a, const BigInt& b) {
 	}
 	int i, lgcat = 0, cc;
 	int n = Length(a), m = Length(b);
-	vector<int> cat(n, 0);
+	//vector<int> cat(n, 0);
+	int* cat = new int[n] {0};
 	BigInt t;
 	for (i = n - 1; t * 10 + a.digits[i] < b;i--) {
 		t *= 10;
@@ -325,7 +337,19 @@ BigInt operator%(BigInt& a, BigInt& b) {
 	return temp;
 }
 
-
+void power(BigInt& a, BigInt& b)
+{
+	if (Null(b))
+		a = 1;
+	else
+	{
+		BigInt temp(a), i(1);
+		for (i; i < b; i++)
+		{
+			a = a * temp;
+		}
+	}
+}
 
 
 

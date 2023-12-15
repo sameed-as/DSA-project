@@ -13,6 +13,12 @@
 
 using namespace std;
 int main(){
+	int identifierspace = 0;
+	//BigInt number(3), po(3);
+	//power(number, po);
+	//cout << number;
+	cout << "\nEnter your identifier space\n";
+	cin >> identifierspace;
 	BTree t(4);
 	BigInt a(2);
 	BigInt b(6);
@@ -80,8 +86,31 @@ int main(){
 		current = current->getNext();
 	} while (current != cll.getHead());
 
-	sha_from_file("files/test.PNG");
-	sha_from_file("files/out.txt");
-	sha_from_file("files/2.JPG");
+	cout << endl;
+	cout << sha_from_file("files/test.PNG", identifierspace)<< endl;
+	cout << sha_from_file("files/out.txt", identifierspace) << endl;
+	cout << sha_from_file("files/2.JPG", identifierspace)   << endl;
+	cout << sha_from_file("files/vid1.mkv", identifierspace)   << endl;
+	cout << sha_from_file("files/vid2.mkv", identifierspace)   << endl;
+	cout << sha_from_file("files/vid3.mkv", identifierspace)   << endl;
+	cout << sha_from_file("files/vid4.mkv", identifierspace)   << endl;
+	cout << sha_from_file("files/voice1.wav", identifierspace)   << endl;
+	cout << sha_from_file("files/voice2.wav", identifierspace)   << endl;
 
+
+	BigInt first(1);
+	BigInt second(1);
+	cout << first + second;
+
+	cout << "\nTEST FOR MACHINES:\n";
+	DoublyLinkedList<routing_table<machine>> dll;
+	CircularLinkedList<machine> DHT;
+
+	machine m1("9", &dll, &DHT, identifierspace);
+	machine m2("4", &dll, &DHT, identifierspace);
+	machine m3("18", &dll, &DHT, identifierspace);
+	machine m4("1", &dll, &DHT, identifierspace);
+	machine m5("20", &dll, &DHT, identifierspace);
+	m5.print();
+	DHT.print_machine();
 }

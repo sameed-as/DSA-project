@@ -1,5 +1,6 @@
 #pragma once
 #include<iostream>
+#include "BigInt.h"
 using namespace std;
 template <class T>
 class Node
@@ -70,6 +71,41 @@ public:
 			node->setNext(head);
 		}
 	}
+
+	void insertmachine(T da)
+	{
+		Node<T>* newnode = new Node<T>(da, NULL);
+		if (isEmpty())
+		{
+			head = newnode;
+			head->setNext(head);
+		}
+		else
+		{
+			if (head->data.real_ID > da.real_ID)
+			{
+				Node<T>* curr = head;
+				while (curr->next != head)
+				{
+					curr = curr->next;
+				}
+				newnode->next = curr->next;
+				curr->next = newnode;
+				head = newnode;
+			}
+			else
+			{
+				Node<T>* curr = head;
+				while (curr->next != head && curr->next->data.real_ID < da.real_ID)
+				{
+					curr = curr->next;
+				}
+				newnode->next = curr->next;
+				curr->next = newnode;
+			}
+		}
+	}
+
 	bool search(T x)
 	{
 		bool check = false;
@@ -142,6 +178,33 @@ public:
 			temp = temp->getNext();
 		} while (temp != head);
 		cout << endl;
+	}
+
+	void print_machine()
+	{
+		Node<T>* temp = head;
+		int i = 0;
+		do
+		{
+			cout << "Machine " << i << ": ";
+			cout << temp->data.real_ID << "\n";
+			temp = temp->getNext();
+			i++;
+		} while (temp != head);
+		cout << endl;
+	}
+
+	BigInt maximumval(T data)
+	{
+		Node<T>* curr = head;
+		BigInt maxim(curr->data.real_ID);
+		curr = curr->next;
+		while (curr->data.real_ID > maxim)
+		{
+			maxim = curr->data.real_ID;
+			curr = curr->next;
+		}
+		return maxim;
 	}
 };
 
